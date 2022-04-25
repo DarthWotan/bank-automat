@@ -1,0 +1,35 @@
+DEMO
+
+0 startmenu
+1 log in / register
+    1.1 log in: mit password und der id einloggen
+    1.2 register: alle daten neu erstellen
+2. menu für account
+    2.1 Geld abheben
+    2.2 Geld einzahlen
+    2.3 Geld überweisen (von Konto a zu Konto b)
+    2.4 persönliche Daten ändern:
+        2.4.1 Name
+        2.4.2 Alter
+        2.4.3 Adresse
+        2.4.4 Geld
+        2.4.5 ID
+    2.5 log out
+3. ggf Credit
+
+
+
+Darstellung (benötigte methoden)
+
+0. Frage, bereits account? ja --> log in; nein --> register
+2.  Menu:
+    - es wird mit den entsprechenden nummern (von 1-5) abrufbar sein
+    - methode überprüft welche nummer eingeben wurde, je nachdem öffnet es das entsprechende menu
+    --> 2.1 Menu bei den gefragt wird, wie viel abgehoben wird (mit zurück funktion)
+        2.2 - 2.3 siehe 2.1
+        2.4. neues Menu mit persönlichen Daten
+        --> gleiches spielchen wie beim ersten menu (um Daten zu ändern, entsprechende nummer eingeben)
+        2.5 bei jedem unterpunkt ein zurück button, bei hauptmenu log out
+            - ggf gleiche methode, nur anderer input?
+
+
