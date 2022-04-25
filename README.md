@@ -1,1 +1,1 @@
-# bank-automat
+# Bank Automat
