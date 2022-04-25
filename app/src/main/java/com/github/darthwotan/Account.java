@@ -3,30 +3,30 @@ package com.github.darthwotan;
 import java.util.List;
 import java.util.Scanner;
 
-public class ACCOUNT {
+public class Account {
 
     private int user_id;
-    private PROFILE user;
-    public DATA data = new DATA();
+    private Profile user;
+    public Data data = new Data();
 
-    public ACCOUNT(String name, String address, String password, int age){
-        user = new PROFILE(name, address, age, password);
+    public Account(String name, String address, String password, int age){
+        user = new Profile(name, address, age, password);
         user_id = user.getID();
 
 
 
     }
 
-    public ACCOUNT(){
+    public Account(){
         user = make_acc();
         user_id = user.getID();
     }
 
-    public ACCOUNT(boolean a){
+    public Account(boolean a){
 
     }
 
-    public ACCOUNT(int id){
+    public Account(int id){
         user_id = id;
         user = search_profile(this.user_id);
     }
@@ -60,10 +60,10 @@ public class ACCOUNT {
         return input1.nextLine();
     }
 
-    public PROFILE make_acc() {
+    public Profile make_acc() {
         String name = create_name(), address = create_address(), password = create_password();
         int age = create_age();
-        PROFILE acc = new PROFILE(name, address, age, password);
+        Profile acc = new Profile(name, address, age, password);
         data.add_element(acc);
         return acc;
     }
@@ -77,7 +77,7 @@ public class ACCOUNT {
         }
     }
 
-    public PROFILE search_profile(int id){
+    public Profile search_profile(int id){
         int index = 0;
         for(int i = 0; i<data.getArray_id().size(); i++){
             if(data.getArray_id().get(i) == id) {
@@ -96,11 +96,11 @@ public class ACCOUNT {
         data.setArray_id(array_id);
     }
 
-    public List<PROFILE> getArray_profile() {
+    public List<Profile> getArray_profile() {
         return data.getArray_profile();
     }
 
-    public void setArray_profile(List<PROFILE> array_profile) {
+    public void setArray_profile(List<Profile> array_profile) {
         data.setArray_profile(array_profile);
     }
 
@@ -112,11 +112,11 @@ public class ACCOUNT {
         this.user_id = user_id;
     }
 
-    public PROFILE getUser() {
+    public Profile getUser() {
         return user;
     }
 
-    public void setUser(PROFILE user) {
+    public void setUser(Profile user) {
         this.user = user;
     }
 }

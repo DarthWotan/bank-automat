@@ -3,8 +3,8 @@ package com.github.darthwotan;
 
 import java.util.Scanner;
 
-public class DEMO {
-    public static PORT port = new PORT();
+public class Demo {
+    public static Port port = new Port();
 
     public static void main(String[] args) {
         System.out.println("""
@@ -161,12 +161,12 @@ public class DEMO {
                             main_menu();
                         }
                         case 3 -> {
-                            TRANSFER transfer;
+                            Transfer transfer;
                             System.out.println("To which user do you want to transfer money? (ID)");
                             check_int(input);
                             int id = 0;
 
-                            PROFILE second_user;
+                            Profile second_user;
                             boolean n = true;
                             while (n){
                                 id = input.nextInt();
@@ -182,7 +182,7 @@ public class DEMO {
                                 check_int(input);
                                 int sum = input.nextInt();
 
-                                transfer = new TRANSFER(port.current_profile, second_user, sum);
+                                transfer = new Transfer(port.current_profile, second_user, sum);
                                 if (transfer.transfer()) {
                                     System.out.println("Successful! You sent " + sum + "$ to " + second_user.getName());
                                     System.out.println("Your current balance: " + port.current_profile.getMoney() + "$");

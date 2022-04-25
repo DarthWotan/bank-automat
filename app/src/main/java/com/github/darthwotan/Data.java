@@ -3,19 +3,19 @@ package com.github.darthwotan;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DATA {
-    public List<PROFILE> array_PROFILE = new ArrayList<>();
+public class Data {
+    public List<Profile> array_Profile = new ArrayList<>();
     public List<Integer> array_id = new ArrayList<>();
 
-    public DATA(){
+    public Data(){
 
     }
-    public void add_element(PROFILE PROFILE){
-        array_PROFILE.add(PROFILE); array_id.add(PROFILE.getID());
+    public void add_element(Profile PROFILE){
+        array_Profile.add(PROFILE); array_id.add(PROFILE.getID());
     }
 
     public void remove_element(int id){
-        array_PROFILE.remove(search_index(id)); array_id.remove(search_index(id));
+        array_Profile.remove(search_index(id)); array_id.remove(search_index(id));
     }
 
     public boolean check_existing_id(int id){
@@ -34,20 +34,20 @@ public class DATA {
         return -1;
     }
 
-    public PROFILE search_profil(int id){
+    public Profile search_profil(int id){
         if (check_existing_id(id)) {
             int index = search_index(id);
-            return array_PROFILE.get(index);
+            return array_Profile.get(index);
         }
-        else return new PROFILE();
+        else return new Profile();
     }
 
-    public List<PROFILE> getArray_profile() {
-        return array_PROFILE;
+    public List<Profile> getArray_profile() {
+        return array_Profile;
     }
 
-    public void setArray_profile(List<PROFILE> array_PROFILE) {
-        this.array_PROFILE = array_PROFILE;
+    public void setArray_profile(List<Profile> array_Profile) {
+        this.array_Profile = array_Profile;
     }
 
     public List<Integer> getArray_id() {

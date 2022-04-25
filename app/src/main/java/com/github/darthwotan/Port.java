@@ -2,12 +2,12 @@ package com.github.darthwotan;
 
 import java.util.Scanner;
 
-public class PORT {
+public class Port {
     public int current_id;
-    public PROFILE current_profile;
-    public ACCOUNT set_account = new ACCOUNT(true);
-    public PORT() {
-        ACCOUNT test_user = new ACCOUNT("Test", "Teststraße 13", "1234", 31);
+    public Profile current_profile;
+    public Account set_account = new Account(true);
+    public Port() {
+        Account test_user = new Account("Test", "Teststraße 13", "1234", 31);
         add_to_list(test_user.getUser(), test_user.getUser_id());
         show_profile_data(test_user.getUser());
 
@@ -15,8 +15,8 @@ public class PORT {
 
     }
 
-    public PROFILE create_acc() {
-        ACCOUNT generator = new ACCOUNT();
+    public Profile create_acc() {
+        Account generator = new Account();
         show_profile_data(generator.getUser());
         current_profile = generator.getUser();
         current_id = current_profile.getID();
@@ -24,8 +24,8 @@ public class PORT {
         return generator.getUser();
     }
 
-    public void add_to_list(PROFILE profile, int id){
-        set_account.data.array_id.add(id); set_account.data.array_PROFILE.add(profile);
+    public void add_to_list(Profile profile, int id){
+        set_account.data.array_id.add(id); set_account.data.array_Profile.add(profile);
     }
 
     public boolean ask_account(){ // start
@@ -54,7 +54,7 @@ public class PORT {
         return true;
     }
 
-    public void show_profile_data(PROFILE acc) { // data menu
+    public void show_profile_data(Profile acc) { // data menu
         System.out.println("Your name:" + acc.getName());
         System.out.println("Your address:" + acc.getAddress());
         System.out.println("Your age:" + acc.getAge());
@@ -65,7 +65,7 @@ public class PORT {
 
     public void log_in(){
         Scanner input = new Scanner(System.in);
-        LOG_IN log_in = new LOG_IN(set_account);
+        LogIn log_in = new LogIn(set_account);
         System.out.println("Whats your password?");
         String pass = input.nextLine();
         log_in.setPassword(pass);
