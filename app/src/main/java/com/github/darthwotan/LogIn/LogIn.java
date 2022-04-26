@@ -1,4 +1,4 @@
-package com.github.darthwotan.Bank;
+package com.github.darthwotan.LogIn;
 
 import com.github.darthwotan.Profile.Profile;
 

@@ -1,7 +1,5 @@
 package com.github.darthwotan.Profile;
 
-import com.github.darthwotan.Bank.SaveProfiles;
-
 import java.util.Scanner;
 
 public class ProfileController {

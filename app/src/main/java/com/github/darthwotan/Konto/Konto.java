@@ -4,16 +4,21 @@ import java.util.Random;
 
 public class Konto {
     private int money, ID, user_ID;
-    public Konto(int userID) {
+    private String name; // steht fuer den Namen des Nutzerkontos
+    private KontoController kontoController = new KontoController();
+
+    public Konto(int userID) { // Konstruktor, um neues Konto für bereits vorhandenes Profil zu erstellen
         this.money = 100;
         this.ID = randomNumber();
         this.user_ID = userID;
+        this.name = kontoController.createName();
 
     }
-    public Konto(){
+    public Konto(){ // Konstruktor, um neues Konto für ein neues Profil zu erstellen
         this.money = 100;
         this.ID = randomNumber();
         this.user_ID = randomNumber();
+        name = "Standard";
     }
 
     public int randomNumber(){
@@ -31,5 +36,13 @@ public class Konto {
 
     public int getMoney() {
         return money;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

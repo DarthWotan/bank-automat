@@ -1,6 +1,5 @@
 package com.github.darthwotan.Profile;
 
-import com.github.darthwotan.Bank.SaveProfiles;
 import com.github.darthwotan.Konto.Konto;
 
 import java.util.ArrayList;
@@ -46,7 +45,7 @@ public class Profile {
         this.name = controller.createName();
         this.address = controller.createAddress();
         this.age = controller.createAge();
-        while(running){
+        while(running){ // falls der User einen freien Namen auswaehlt wird die loop beendet
             username = controller.createUsername();
             if(!saveProfiles.checkIfUsernameExists(username)) running = false;
             else System.out.println("Sorry this username is already taken");
@@ -62,6 +61,7 @@ public class Profile {
     } // gibt Name, Addresse, Alter, Passwort und Nutzernamen aus
 
     public void newKonto(){
+        String name = "unknown"; // todo: name soll bestimmbar sein
         kontoList.add(new Konto(this.user_ID));
     }
 
