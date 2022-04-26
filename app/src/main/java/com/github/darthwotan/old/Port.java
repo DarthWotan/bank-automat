@@ -4,10 +4,10 @@ import java.util.Scanner;
 
 public class Port {
     public int current_id;
-    public Profile current_profile;
-    public Account set_account = new Account(true);
+    public ProfileOld current_profileOld;
+    public AccountOld set_accountOld = new AccountOld(true);
     public Port() {
-        Account test_user = new Account("Test", "Teststraße 13", "1234", 31);
+        AccountOld test_user = new AccountOld("Test", "Teststraße 13", "1234", 31);
         add_to_list(test_user.getUser(), test_user.getUser_id());
         show_profile_data(test_user.getUser());
 
@@ -15,17 +15,17 @@ public class Port {
 
     }
 
-    public Profile create_acc() {
-        Account generator = new Account();
+    public ProfileOld create_acc() {
+        AccountOld generator = new AccountOld();
         show_profile_data(generator.getUser());
-        current_profile = generator.getUser();
-        current_id = current_profile.getID();
-        add_to_list(current_profile, current_id);
+        current_profileOld = generator.getUser();
+        current_id = current_profileOld.getID();
+        add_to_list(current_profileOld, current_id);
         return generator.getUser();
     }
 
-    public void add_to_list(Profile profile, int id){
-        set_account.data.array_id.add(id); set_account.data.array_Profile.add(profile);
+    public void add_to_list(ProfileOld profileOld, int id){
+        set_accountOld.dataOld.array_id.add(id); set_accountOld.dataOld.array_ProfileOld.add(profileOld);
     }
 
     public boolean ask_account(){ // start
@@ -54,7 +54,7 @@ public class Port {
         return true;
     }
 
-    public void show_profile_data(Profile acc) { // data menu
+    public void show_profile_data(ProfileOld acc) { // data menu
         System.out.println("Your name:" + acc.getName());
         System.out.println("Your address:" + acc.getAddress());
         System.out.println("Your age:" + acc.getAge());
@@ -65,15 +65,15 @@ public class Port {
 
     public void log_in(){
         Scanner input = new Scanner(System.in);
-        LogIn log_in = new LogIn(set_account);
+        LogInOld log_in = new LogInOld(set_accountOld);
         System.out.println("Whats your password?");
         String pass = input.nextLine();
         log_in.setPassword(pass);
         if(log_in.check_pass()){
             System.out.println("Logged in!");
             show_profile_data(log_in.getProfile());
-            current_profile = log_in.getProfile();
-            current_id = current_profile.getID();
+            current_profileOld = log_in.getProfile();
+            current_id = current_profileOld.getID();
 
         }
         else {

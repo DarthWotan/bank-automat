@@ -2,24 +2,24 @@ package com.github.darthwotan.old;
 
 import java.util.Scanner;
 
-public class LogIn {
+public class LogInOld {
 
-    private Profile profile;
+    private ProfileOld profileOld;
     private String password;
-    private Account account;
+    private AccountOld accountOld;
 
-    public LogIn(String pa, Account ac){
+    public LogInOld(String pa, AccountOld ac){
         password = pa;
-        account = ac;
-        profile = get_profile(get_id());
+        accountOld = ac;
+        profileOld = get_profile(get_id());
     }
-    public LogIn(Account ac){
-        account = ac;
-        profile = get_profile(get_id());
+    public LogInOld(AccountOld ac){
+        accountOld = ac;
+        profileOld = get_profile(get_id());
     }
 
     public boolean check_pass(){
-        return password.equals(this.profile.getPassword());
+        return password.equals(this.profileOld.getPassword());
     }
     public int get_id(){
         System.out.println("Whats your ID? (only numbers)");
@@ -36,20 +36,20 @@ public class LogIn {
         return id;
     }
 
-    public Profile get_profile(int id){
-        return account.search_profile(id);
+    public ProfileOld get_profile(int id){
+        return accountOld.search_profile(id);
     }
 
 
     public boolean check_existing_id(int id){
-        for(int i=0; i< account.getArray_id().size(); i++){
-            if(id == account.getArray_id().get(i)) return true;
+        for(int i = 0; i< accountOld.getArray_id().size(); i++){
+            if(id == accountOld.getArray_id().get(i)) return true;
         }
         return false;
     }
 
-    public Profile getProfile() {
-        return profile;
+    public ProfileOld getProfile() {
+        return profileOld;
     }
 
     public void setPassword(String password) {

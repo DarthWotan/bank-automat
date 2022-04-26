@@ -7,8 +7,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ProfileTest {
     @Test
     void hasCorrectData(){
-        Profile classUnderTest = new Profile("Test", "Teststraße 19", 34, "1234");
-        assertEquals("Test", classUnderTest.getName());
+        Profile classUnderTest = new Profile("Testname","Test", "Teststraße 19", 34, "1234");
+        assertEquals("Testname", classUnderTest.getName());
+        assertEquals("Test", classUnderTest.getUsername());
         assertEquals("Teststraße 19", classUnderTest.getAddress());
         assertEquals(34, classUnderTest.getAge());
         assertEquals("1234", classUnderTest.getPassword());

@@ -1,19 +1,19 @@
 package com.github.darthwotan.old;
 
-public class Profile {
+public class ProfileOld {
     private String name, address, password;
     private int age;
-    private Bank account;
+    private BankOld account;
 
-    public Profile(String n, String a, int ag, String pass){
+    public ProfileOld(String n, String a, int ag, String pass){
         name = n; address = a; age = ag; password = pass;
-        account = new Bank(name);
+        account = new BankOld(name);
 
 
     }
 
-    public Profile(){
-        name = "Max Mustermann"; address = "Mustermannstraße 13"; age = 28; account = new Bank(name);
+    public ProfileOld(){
+        name = "Max Mustermann"; address = "Mustermannstraße 13"; age = 28; account = new BankOld(name);
     }
 
     public void change_address(String a){
@@ -51,7 +51,7 @@ public class Profile {
         this.age = age;
     }
 
-    public Bank getAccount() {
+    public BankOld getAccount() {
         return account;
     }
 

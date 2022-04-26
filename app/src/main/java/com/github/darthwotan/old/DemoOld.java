@@ -3,7 +3,7 @@ package com.github.darthwotan.old;
 
 import java.util.Scanner;
 
-public class Demo {
+public class DemoOld {
     public static Port port = new Port();
 
     public static void main(String[] args) {
@@ -138,11 +138,11 @@ public class Demo {
                             while (run) {
                                 check_int(input);
                                 int sum = input.nextInt();
-                                if (!port.current_profile.getAccount().draw(sum))
+                                if (!port.current_profileOld.getAccount().draw(sum))
                                     System.out.println("You don't have enough money to do this!");
                                 else {
                                     System.out.println("Successful! You withdrew " + sum + "$");
-                                    System.out.println("Your current balance: " + port.current_profile.getMoney() + "$");
+                                    System.out.println("Your current balance: " + port.current_profileOld.getMoney() + "$");
                                     running = false; run = false;
                                     main_menu();
                                 }
@@ -154,9 +154,9 @@ public class Demo {
                                     How much do you want to deposit?""");
                            check_int(input);
                             int sum = input.nextInt();
-                            port.current_profile.getAccount().deposit(sum);
+                            port.current_profileOld.getAccount().deposit(sum);
                             System.out.println("Successful! You deposited " + sum + "$");
-                            System.out.println("Your current balance: " + port.current_profile.getMoney() + "$");
+                            System.out.println("Your current balance: " + port.current_profileOld.getMoney() + "$");
                             running = false;
                             main_menu();
                         }
@@ -166,26 +166,26 @@ public class Demo {
                             check_int(input);
                             int id = 0;
 
-                            Profile second_user;
+                            ProfileOld second_user;
                             boolean n = true;
                             while (n){
                                 id = input.nextInt();
-                                if(port.set_account.data.check_existing_id(id)) {
+                                if(port.set_accountOld.dataOld.check_existing_id(id)) {
                                     n = false;
                                 }
                                 else System.out.println("User does not exist, try again");
                             }
-                            second_user = port.set_account.data.search_profil(id);
+                            second_user = port.set_accountOld.dataOld.search_profil(id);
 
                             while(true){
                                 System.out.println("How much money do you want do send?");
                                 check_int(input);
                                 int sum = input.nextInt();
 
-                                transfer = new Transfer(port.current_profile, second_user, sum);
+                                transfer = new Transfer(port.current_profileOld, second_user, sum);
                                 if (transfer.transfer()) {
                                     System.out.println("Successful! You sent " + sum + "$ to " + second_user.getName());
-                                    System.out.println("Your current balance: " + port.current_profile.getMoney() + "$");
+                                    System.out.println("Your current balance: " + port.current_profileOld.getMoney() + "$");
                                     main_menu();
                                 }
                             }
@@ -221,7 +221,7 @@ public class Demo {
             i = input.nextInt();
             switch (i) {
                 case 1 -> {
-                    port.show_profile_data(port.current_profile);
+                    port.show_profile_data(port.current_profileOld);
                     running = false;
                     data_menu();
 
@@ -253,24 +253,24 @@ public class Demo {
         int i = input.nextInt();
         switch (i){
             case 1-> {
-                port.current_profile.setName(port.set_account.create_name());
-                System.out.println("New name: " + port.current_profile.getName());
+                port.current_profileOld.setName(port.set_accountOld.create_name());
+                System.out.println("New name: " + port.current_profileOld.getName());
                 data_menu();
 
             }
             case 2-> {
-                port.current_profile.setAddress(port.set_account.create_address());
-                System.out.println("New address: " + port.current_profile.getAddress());
+                port.current_profileOld.setAddress(port.set_accountOld.create_address());
+                System.out.println("New address: " + port.current_profileOld.getAddress());
                 data_menu();
             }
             case 3-> {
-                port.current_profile.setAge(port.set_account.create_age());
-                System.out.println("New age: " + port.current_profile.getAge());
+                port.current_profileOld.setAge(port.set_accountOld.create_age());
+                System.out.println("New age: " + port.current_profileOld.getAge());
                 data_menu();
             }
             case 4-> {
-                port.current_profile.setPassword(port.set_account.create_password());
-                System.out.println("New password: " + port.current_profile.getPassword());
+                port.current_profileOld.setPassword(port.set_accountOld.create_password());
+                System.out.println("New password: " + port.current_profileOld.getPassword());
                 data_menu();
             }
             case 5-> back_button(3);

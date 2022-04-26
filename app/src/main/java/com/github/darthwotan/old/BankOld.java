@@ -3,18 +3,18 @@ package com.github.darthwotan.old;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Bank {
+public class BankOld {
     private int user_id, money;
     private String name;
     private List<Integer> list_id = new ArrayList<>();
 
-    public Bank(String n){
+    public BankOld(String n){
         user_id = create_id();
         money = 100;
         name = n;
     }
 
-    public Bank(String n, int id, int m){
+    public BankOld(String n, int id, int m){
         user_id = id;
         money = m;
         name = n;

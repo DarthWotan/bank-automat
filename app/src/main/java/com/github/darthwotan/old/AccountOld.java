@@ -3,30 +3,30 @@ package com.github.darthwotan.old;
 import java.util.List;
 import java.util.Scanner;
 
-public class Account {
+public class AccountOld {
 
     private int user_id;
-    private Profile user;
-    public Data data = new Data();
+    private ProfileOld user;
+    public DataOld dataOld = new DataOld();
 
-    public Account(String name, String address, String password, int age){
-        user = new Profile(name, address, age, password);
+    public AccountOld(String name, String address, String password, int age){
+        user = new ProfileOld(name, address, age, password);
         user_id = user.getID();
 
 
 
     }
 
-    public Account(){
+    public AccountOld(){
         user = make_acc();
         user_id = user.getID();
     }
 
-    public Account(boolean a){
+    public AccountOld(boolean a){
 
     }
 
-    public Account(int id){
+    public AccountOld(int id){
         user_id = id;
         user = search_profile(this.user_id);
     }
@@ -60,48 +60,48 @@ public class Account {
         return input1.nextLine();
     }
 
-    public Profile make_acc() {
+    public ProfileOld make_acc() {
         String name = create_name(), address = create_address(), password = create_password();
         int age = create_age();
-        Profile acc = new Profile(name, address, age, password);
-        data.add_element(acc);
+        ProfileOld acc = new ProfileOld(name, address, age, password);
+        dataOld.add_element(acc);
         return acc;
     }
 
     public void delete_acc(int id){
-        for(int i = 0; i < data.getArray_id().size(); i++) {
-            if (data.getArray_id().get(i) == id) {
-                data.getArray_id().remove(i);
-                data.getArray_profile().remove(i);
+        for(int i = 0; i < dataOld.getArray_id().size(); i++) {
+            if (dataOld.getArray_id().get(i) == id) {
+                dataOld.getArray_id().remove(i);
+                dataOld.getArray_profile().remove(i);
             }
         }
     }
 
-    public Profile search_profile(int id){
+    public ProfileOld search_profile(int id){
         int index = 0;
-        for(int i = 0; i<data.getArray_id().size(); i++){
-            if(data.getArray_id().get(i) == id) {
+        for(int i = 0; i< dataOld.getArray_id().size(); i++){
+            if(dataOld.getArray_id().get(i) == id) {
                 index = i;
                 break;
             }
         }
-        return data.getArray_profile().get(index);
+        return dataOld.getArray_profile().get(index);
     }
 
     public List<Integer> getArray_id() {
-        return data.getArray_id();
+        return dataOld.getArray_id();
     }
 
     public void setArray_id(List<Integer> array_id) {
-        data.setArray_id(array_id);
+        dataOld.setArray_id(array_id);
     }
 
-    public List<Profile> getArray_profile() {
-        return data.getArray_profile();
+    public List<ProfileOld> getArray_profile() {
+        return dataOld.getArray_profile();
     }
 
-    public void setArray_profile(List<Profile> array_profile) {
-        data.setArray_profile(array_profile);
+    public void setArray_profile(List<ProfileOld> array_profileOld) {
+        dataOld.setArray_profile(array_profileOld);
     }
 
     public int getUser_id() {
@@ -112,11 +112,11 @@ public class Account {
         this.user_id = user_id;
     }
 
-    public Profile getUser() {
+    public ProfileOld getUser() {
         return user;
     }
 
-    public void setUser(Profile user) {
+    public void setUser(ProfileOld user) {
         this.user = user;
     }
 }

@@ -1,9 +1,9 @@
 package com.github.darthwotan.old;
 
 public class Transfer {
-    private Profile u1, u2;
+    private ProfileOld u1, u2;
     private int a;
-    public Transfer(Profile user1, Profile user2, int amount) {
+    public Transfer(ProfileOld user1, ProfileOld user2, int amount) {
         u1 = user1; u2 = user2; a = amount;
     }
     public boolean transfer(){
