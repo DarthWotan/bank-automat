@@ -1,4 +1,4 @@
-package com.github.darthwotan;
+package com.github.darthwotan.old;
 
 import java.util.Scanner;
 
