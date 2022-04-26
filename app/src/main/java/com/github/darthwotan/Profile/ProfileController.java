@@ -5,16 +5,15 @@ import com.github.darthwotan.Bank.SaveProfiles;
 import java.util.Scanner;
 
 public class ProfileController {
-    SaveProfiles saveProfiles;
-    public ProfileController(SaveProfiles saveProfiles) {
-        this.saveProfiles = saveProfiles;
+    public ProfileController() {
+
     }
-    public void showProfile(Profile profile){
-        System.out.println("Your username: " + profile.getUsername());
-        System.out.println("Your name: " + profile.getName());
-        System.out.println("Your address: " + profile.getAddress());
-        System.out.println("Your age: " + profile.getAge());
-        System.out.println("Your password: " + profile.getPassword());
+    public void showProfile(String name, String username, String address, int age, String password){
+        System.out.println("Your username: " + username);
+        System.out.println("Your name: " + name);
+        System.out.println("Your address: " + address);
+        System.out.println("Your age: " + age);
+        System.out.println("Your password: " + password);
     }
 
     public String createName(){

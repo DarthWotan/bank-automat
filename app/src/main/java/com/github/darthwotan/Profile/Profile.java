@@ -23,7 +23,7 @@ public class Profile {
         this.Konto1 = new Konto();
         this.kontoList.add(Konto1);
         this.user_ID = Konto1.getUser_ID();
-        this.controller = new ProfileController(saveProfiles);
+        this.controller = new ProfileController();
         this.saveProfiles = saveProfiles;
 
         this.saveProfiles.addProfile(this);
@@ -33,28 +33,32 @@ public class Profile {
         this.Konto1 = new Konto();
         this.kontoList.add(Konto1);
         this.user_ID = Konto1.getUser_ID();
-        this.controller = new ProfileController(saveProfiles);
+        this.controller = new ProfileController();
         this.saveProfiles = saveProfiles;
         createProfile();
 
         this.saveProfiles.addProfile(this);
-        showProfile();
     }
 
     private void createProfile(){
         boolean running = true;
-        String password, username;
+        String password, username = null;
         this.name = controller.createName();
         this.address = controller.createAddress();
         this.age = controller.createAge();
-        password = controller.createUsername();
-        username = controller.createPassword();
+        while(running){
+            username = controller.createUsername();
+            if(!saveProfiles.checkIfUsernameExists(username)) running = false;
+            else System.out.println("Sorry this username is already taken");
+
+        }
+        password = controller.createPassword();
         userAccount = new UserAccount(username, password);
 
     }
 
     public void showProfile(){
-        controller.showProfile(this);
+        controller.showProfile(name, userAccount.getUsername(), address, age, userAccount.getPassword() );
     } // gibt Name, Addresse, Alter, Passwort und Nutzernamen aus
 
     public void newKonto(){
