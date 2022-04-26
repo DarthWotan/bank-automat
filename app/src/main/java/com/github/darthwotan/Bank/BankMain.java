@@ -4,8 +4,11 @@ import com.github.darthwotan.Profile.Profile;
 
 public class BankMain {
     public static void main(String[] args) {
-        Profile testProfile = new Profile("Testname","Test", "Tetstraße 19", 34, "1234");
+        SaveProfiles saveProfiles = new SaveProfiles();
+        Profile testProfile = new Profile("Testname","Test", "Tetstraße 19", 34, "1234", saveProfiles);
         testProfile.showProfile();
+        if(saveProfiles.checkIfUsernameExists(testProfile.getUsername())) System.out.println("ist da");
+        Profile test = new Profile(saveProfiles);
     }
 
 }

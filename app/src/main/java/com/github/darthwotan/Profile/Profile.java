@@ -1,5 +1,6 @@
 package com.github.darthwotan.Profile;
 
+import com.github.darthwotan.Bank.SaveProfiles;
 import com.github.darthwotan.Konto.Konto;
 
 import java.util.ArrayList;
@@ -12,8 +13,9 @@ public class Profile {
     private ProfileController controller;
     private List<Konto> kontoList = new ArrayList<>(); // um zu speichern, welche/wie viele Konten der Nutzer hat
     private UserAccount userAccount;
+    private SaveProfiles saveProfiles;
     
-    public Profile(String name, String username, String address, int age, String password) {
+    public Profile(String name, String username, String address, int age, String password, SaveProfiles saveProfiles) {
         this.name = name;
         this.address = address;
         this.userAccount = new UserAccount(username, password);
@@ -21,7 +23,34 @@ public class Profile {
         this.Konto1 = new Konto();
         this.kontoList.add(Konto1);
         this.user_ID = Konto1.getUser_ID();
-        this.controller = new ProfileController();
+        this.controller = new ProfileController(saveProfiles);
+        this.saveProfiles = saveProfiles;
+
+        this.saveProfiles.addProfile(this);
+    }
+
+    public Profile(SaveProfiles saveProfiles){
+        this.Konto1 = new Konto();
+        this.kontoList.add(Konto1);
+        this.user_ID = Konto1.getUser_ID();
+        this.controller = new ProfileController(saveProfiles);
+        this.saveProfiles = saveProfiles;
+        createProfile();
+
+        this.saveProfiles.addProfile(this);
+        showProfile();
+    }
+
+    private void createProfile(){
+        boolean running = true;
+        String password, username;
+        this.name = controller.createName();
+        this.address = controller.createAddress();
+        this.age = controller.createAge();
+        password = controller.createUsername();
+        username = controller.createPassword();
+        userAccount = new UserAccount(username, password);
+
     }
 
     public void showProfile(){
