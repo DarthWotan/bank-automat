@@ -57,11 +57,10 @@ public class Profile {
     }
 
     public void showProfile(){
-        controller.showProfile(name, userAccount.getUsername(), address, age, userAccount.getPassword() );
+        controller.showProfile(name, userAccount.getUsername(), address, age, userAccount.getPassword(), getNetWorth());
     } // gibt Name, Addresse, Alter, Passwort und Nutzernamen aus
 
     public void newKonto(){
-        String name = "unknown"; // todo: name soll bestimmbar sein
         kontoList.add(new Konto(this.user_ID));
     }
 
@@ -102,6 +101,11 @@ public class Profile {
 
     public String getUsername() {
         return userAccount.getUsername();
+    }
+    public int getNetWorth(){ // Summe aller Konten
+        int sum = 0;
+        for(int i = 0; i < kontoList.size(); i++) sum += kontoList.get(i).getMoney();
+        return sum;
     }
 
 }
