@@ -1,6 +1,6 @@
-package com.github.darthwotan.Profile;
+package com.github.darthwotan.profile;
 
-import com.github.darthwotan.Konto.Konto;
+import com.github.darthwotan.konto.Konto;
 
 import java.util.HashMap;
 import java.util.Map;

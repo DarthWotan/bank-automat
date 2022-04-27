@@ -1,6 +1,6 @@
-package com.github.darthwotan.Active;
+package com.github.darthwotan.active;
 
-import com.github.darthwotan.Profile.Profile;
+import com.github.darthwotan.profile.Profile;
 
 public class ActiveUser {
     private Profile currentProfile;

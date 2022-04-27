@@ -1,6 +1,6 @@
-package com.github.darthwotan.LogIn;
+package com.github.darthwotan.logIn;
 
-import com.github.darthwotan.Profile.Profile;
+import com.github.darthwotan.profile.Profile;
 
 public class LogIn {
     private Profile profile;

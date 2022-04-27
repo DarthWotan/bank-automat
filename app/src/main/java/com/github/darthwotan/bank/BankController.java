@@ -1,8 +1,8 @@
-package com.github.darthwotan.Bank;
+package com.github.darthwotan.bank;
 
-import com.github.darthwotan.Active.ActiveUser;
-import com.github.darthwotan.LogIn.LogIn;
-import com.github.darthwotan.Profile.Profile;
+import com.github.darthwotan.active.ActiveUser;
+import com.github.darthwotan.logIn.LogIn;
+import com.github.darthwotan.profile.Profile;
 
 import java.util.Scanner;
 
@@ -27,6 +27,14 @@ public class BankController {
             }
         }
         System.out.println("Logged in!");
+    }
+
+    public ActiveUser getActiveUser() {
+        return activeUser;
+    }
+
+    public void setActiveUser(ActiveUser activeUser) {
+        this.activeUser = activeUser;
     }
 
     public String askForPassword(){

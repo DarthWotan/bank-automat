@@ -1,13 +1,13 @@
-package com.github.darthwotan.Bank;
+package com.github.darthwotan.bank;
 
-import com.github.darthwotan.Interface.Interface;
-import com.github.darthwotan.Profile.Profile;
-import com.github.darthwotan.Profile.SaveProfiles;
+import com.github.darthwotan.console.Console;
+import com.github.darthwotan.profile.Profile;
+import com.github.darthwotan.profile.SaveProfiles;
 
 public class BankMain {
     public static void main(String[] args) {
         SaveProfiles saveProfiles = new SaveProfiles();
-        Interface console = new Interface(saveProfiles);
+        Console console = new Console(saveProfiles);
         Profile testProfile = new Profile("Testname","Test", "Tetstraße 19", 34, "1234", saveProfiles);
         testProfile.showProfile();
         if(saveProfiles.checkIfUsernameExists(testProfile.getUsername())) System.out.println("ist da");

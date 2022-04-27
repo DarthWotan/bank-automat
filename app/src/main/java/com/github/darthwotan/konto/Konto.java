@@ -1,4 +1,4 @@
-package com.github.darthwotan.Konto;
+package com.github.darthwotan.konto;
 
 import java.util.Random;
 

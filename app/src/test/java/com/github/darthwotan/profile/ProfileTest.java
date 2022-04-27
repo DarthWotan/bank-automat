@@ -1,4 +1,4 @@
-package com.github.darthwotan.Profile;
+package com.github.darthwotan.profile;
 
 import org.junit.jupiter.api.Test;
 
