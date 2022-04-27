@@ -10,6 +10,9 @@ public class BankMain {
         testProfile.showProfile();
         if(saveProfiles.checkIfUsernameExists(testProfile.getUsername())) System.out.println("ist da");
         Profile test = new Profile(saveProfiles);
+        test.showProfile();
+        BankController bankController = new BankController(test);
+        bankController.logIn();
     }
 
 }

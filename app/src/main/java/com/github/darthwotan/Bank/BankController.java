@@ -16,8 +16,17 @@ public class BankController {
 
     }
     public void logIn(){
-        if(logIn.checkPass()) activeUser.setCurrentProfile(profile);
-        else askForPassword();
+        boolean running = true;
+        while(running){
+            if (logIn.checkPass()) { // überprüft, ob das eingeben Passwort korrekt ist
+                activeUser = new ActiveUser(profile); // wählt anschließend den momentanten Nutzer aus
+                running = false;
+            }
+            else { System.out.println("Wrong password, try again");
+                logIn.setPassword(askForPassword());
+            }
+        }
+        System.out.println("Logged in!");
     }
 
     public String askForPassword(){

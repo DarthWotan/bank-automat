@@ -12,4 +12,12 @@ public class LogIn {
     public boolean checkPass(){
         return profile.getPassword().equals(password);
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

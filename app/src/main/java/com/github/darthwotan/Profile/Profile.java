@@ -37,7 +37,7 @@ public class Profile {
         createProfile();
 
         this.saveProfiles.addProfile(this);
-    }
+    } // Konstruktor gleicht einer Registrierung
 
     private void createProfile(){
         boolean running = true;
