@@ -1,29 +1,26 @@
 package com.github.darthwotan.Profile;
 
-import com.github.darthwotan.Profile.Profile;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SaveProfiles {
-    private List<Profile> profileList = new ArrayList<>(); // jedes Profil soll in dieser Liste gespeichert werden
+    private Map<String, Profile> profileMap; // jedes Profil soll in dieser Liste gespeichert werden
 
     public SaveProfiles() {
+        profileMap = new HashMap<>();
     }
 
     public void addProfile(Profile profile){
-        profileList.add(profile);
+        profileMap.put(profile.getUsername(), profile);
     }
 
     public void removeProfile(Profile profile){
-        profileList.remove(profile);
+        profileMap.remove(profile.getUsername());
     }
 
     public Profile searchUsername(String username) throws Exception {
-        for(int i = 0; i < profileList.size(); i++) {
-            if(profileList.get(i).getUsername().equals(username)) return profileList.get(i); // geht die Liste durch und gibt das entsprechende Profil wieder, falls es den Username gibt
-        }
-        throw new Exception("Profile does not exist"); // for loop durchgelaufen: -> Username wurde nicht gefunden
+        if(profileMap.containsKey(username)) return profileMap.get(username); // überprüft, ob der Name bereits existiert
+        else throw new Exception("Profile does not exist");
     }
 
     public boolean checkIfUsernameExists(String username){
@@ -33,5 +30,9 @@ public class SaveProfiles {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public Map<String, Profile> getProfileMap() {
+        return profileMap;
     }
 }

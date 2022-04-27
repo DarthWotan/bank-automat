@@ -21,9 +21,14 @@ public class Konto {
         name = "Standard";
     }
 
+    public int getID() {
+        return ID;
+    }
+
     public int randomNumber(){
         Random r = new Random();
         return r.nextInt(900000) + 100000;
+        // todo: keine doppelungen
     }
 
     public int getUser_ID() {

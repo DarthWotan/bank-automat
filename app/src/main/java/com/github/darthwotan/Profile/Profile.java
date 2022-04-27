@@ -2,15 +2,15 @@ package com.github.darthwotan.Profile;
 
 import com.github.darthwotan.Konto.Konto;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Profile {
     private String name, address;
-    private Konto Konto1;
-    private int age, user_ID;
+    private Konto konto1;
+    private int age, userID;
     private ProfileController controller;
-    private List<Konto> kontoList = new ArrayList<>(); // um zu speichern, welche/wie viele Konten der Nutzer hat
+    private Map<Integer,Konto> kontoHashMap =  new HashMap<Integer, Konto>(); // um zu speichern, welche/wie viele Konten der Nutzer hat
     private UserAccount userAccount;
     private SaveProfiles saveProfiles;
     
@@ -19,9 +19,9 @@ public class Profile {
         this.address = address;
         this.userAccount = new UserAccount(username, password);
         this.age = age;
-        this.Konto1 = new Konto();
-        this.kontoList.add(Konto1);
-        this.user_ID = Konto1.getUser_ID();
+        this.konto1 = new Konto();
+        this.kontoHashMap.put(konto1.getID(), konto1);
+        this.userID = konto1.getUser_ID();
         this.controller = new ProfileController();
         this.saveProfiles = saveProfiles;
 
@@ -29,9 +29,9 @@ public class Profile {
     }
 
     public Profile(SaveProfiles saveProfiles){
-        this.Konto1 = new Konto();
-        this.kontoList.add(Konto1);
-        this.user_ID = Konto1.getUser_ID();
+        this.konto1 = new Konto();
+        this.kontoHashMap.put(konto1.getID(), konto1);
+        this.userID = konto1.getUser_ID();
         this.controller = new ProfileController();
         this.saveProfiles = saveProfiles;
         createProfile();
@@ -42,9 +42,6 @@ public class Profile {
     private void createProfile(){
         boolean running = true;
         String password, username = null;
-        this.name = controller.createName();
-        this.address = controller.createAddress();
-        this.age = controller.createAge();
         while(running){ // falls der User einen freien Namen auswaehlt wird die loop beendet
             username = controller.createUsername();
             if(!saveProfiles.checkIfUsernameExists(username)) running = false;
@@ -52,6 +49,10 @@ public class Profile {
 
         }
         password = controller.createPassword();
+        this.name = controller.createName();
+        this.address = controller.createAddress();
+        this.age = controller.createAge();
+
         userAccount = new UserAccount(username, password);
 
     }
@@ -61,11 +62,16 @@ public class Profile {
     } // gibt Name, Addresse, Alter, Passwort und Nutzernamen aus
 
     public void newKonto(){
-        kontoList.add(new Konto(this.user_ID));
+        Konto konto = new Konto(this.userID);
+        kontoHashMap.put(konto.getID(), konto);
     }
 
     public int getAge() {
         return age;
+    }
+
+    public int getUserID() {
+        return userID;
     }
 
     public int getMoney(Konto konto){
@@ -104,7 +110,9 @@ public class Profile {
     }
     public int getNetWorth(){ // Summe aller Konten
         int sum = 0;
-        for(int i = 0; i < kontoList.size(); i++) sum += kontoList.get(i).getMoney();
+        for(Konto i: kontoHashMap.values()){
+            sum += i.getMoney();
+        }
         return sum;
     }
 
