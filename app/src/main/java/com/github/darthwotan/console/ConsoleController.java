@@ -73,9 +73,6 @@ public class ConsoleController { // zuständig um die richtigen Befehle auszufü
             }
             else System.out.println("Username does not exist, try again");
         }
-
-
-
     }
 
     private Profile register(){

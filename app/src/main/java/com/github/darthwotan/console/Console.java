@@ -15,7 +15,6 @@ public class Console { // zuständig für die Ausgabe in der Konsole
 
     public void startDemo(){ // soll am Schluss das Programm starten
         startMenu();
-        mainMenu();
     }
 
     public void startMenu(){
@@ -31,6 +30,7 @@ public class Console { // zuständig für die Ausgabe in der Konsole
             }
             else System.out.println("Invalid answer, try again");
         }
+        mainMenu();
     }
 
     public void mainMenu(){
