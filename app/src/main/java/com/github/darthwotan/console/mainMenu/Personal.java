@@ -1,6 +1,6 @@
 package com.github.darthwotan.console.mainMenu;
 
-import com.github.darthwotan.active.ActiveUser;
+import com.github.darthwotan.profile.ActiveUser;
 
 public class Personal {
     ActiveUser activeUser;

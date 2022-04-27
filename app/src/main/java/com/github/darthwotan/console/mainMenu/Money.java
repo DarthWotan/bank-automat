@@ -1,6 +1,6 @@
 package com.github.darthwotan.console.mainMenu;
 
-import com.github.darthwotan.active.ActiveUser;
+import com.github.darthwotan.profile.ActiveUser;
 import com.github.darthwotan.konto.Konto;
 
 import java.util.Map;
@@ -65,7 +65,7 @@ public class Money {
 
     }
 
-    private Konto askForAccount() throws Exception {
+    private Konto askForAccount() throws Exception { // todo: besser mit optional statt Exeption
         int a;
         Map<Integer, Konto> map = activeUser.getCurrentProfile().getKontoHashMap();
 

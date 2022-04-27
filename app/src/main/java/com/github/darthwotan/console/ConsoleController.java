@@ -1,6 +1,6 @@
 package com.github.darthwotan.console;
 
-import com.github.darthwotan.active.ActiveUser;
+import com.github.darthwotan.profile.ActiveUser;
 import com.github.darthwotan.bank.BankController;
 import com.github.darthwotan.console.mainMenu.Money;
 import com.github.darthwotan.console.mainMenu.Personal;
@@ -60,14 +60,15 @@ public class ConsoleController { // zuständig um die richtigen Befehle auszufü
 
     private void logIn() {
         Scanner input = new Scanner(System.in);
-        String username; boolean running = true;
+        String username;
+        boolean running = true;
         while(running){
             System.out.println("What is your username?");
             username = input.nextLine();
             if(allProfiles.checkIfUsernameExists(username)) {
                 running = false;
                 bankController = new BankController(allProfiles.getProfileMap().get(username));
-                bankController.logIn();
+                bankController.logIn(); // password wird überpürft
                 activeUser = bankController.getActiveUser();
 
             }

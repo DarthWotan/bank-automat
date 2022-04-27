@@ -1,11 +1,12 @@
 package com.github.darthwotan.bank;
 
-import com.github.darthwotan.active.ActiveUser;
+import com.github.darthwotan.profile.ActiveUser;
 import com.github.darthwotan.logIn.LogIn;
 import com.github.darthwotan.profile.Profile;
 
 import java.util.Scanner;
 
+// todo: nicht unbedingt notwendig
 public class BankController {
     private LogIn logIn;
     private ActiveUser activeUser;
@@ -22,7 +23,8 @@ public class BankController {
                 activeUser = new ActiveUser(profile); // wählt anschließend den momentanten Nutzer aus
                 running = false;
             }
-            else { System.out.println("Wrong password, try again");
+            else {
+                System.out.println("Wrong password, try again");
                 logIn.setPassword(askForPassword());
             }
         }

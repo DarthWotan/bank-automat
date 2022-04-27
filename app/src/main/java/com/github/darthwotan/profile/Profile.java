@@ -39,7 +39,7 @@ public class Profile {
         this.saveProfiles.addProfile(this);
     } // Konstruktor gleicht einer Registrierung
 
-    private void createProfile(){
+    private void createProfile(){ // todo: ganze create methoden verlagern
         boolean running = true;
         String password, username = null;
         while(running){ // falls der User einen freien Namen auswaehlt wird die loop beendet

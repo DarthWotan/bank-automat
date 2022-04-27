@@ -1,4 +1,4 @@
-package com.github.darthwotan.active;
+package com.github.darthwotan.profile;
 
 import com.github.darthwotan.profile.Profile;
 
