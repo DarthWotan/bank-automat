@@ -20,7 +20,7 @@ public class ConsoleController { // zuständig um die richtigen Befehle auszufü
     
     public void logInOrRegister(int input){
         if(input == 1) logIn();
-        else bankController.setActiveUser(new ActiveUser(register()));
+        else activeUser = new ActiveUser(register());
     }
 
     public int mainMenu(int input){ // mit return arbeiten, um das ursrprüngliche "Fenster" wieder aufzurufen
@@ -68,6 +68,7 @@ public class ConsoleController { // zuständig um die richtigen Befehle auszufü
                 running = false;
                 bankController = new BankController(allProfiles.getProfileMap().get(username));
                 bankController.logIn();
+                activeUser = bankController.getActiveUser();
 
             }
             else System.out.println("Username does not exist, try again");

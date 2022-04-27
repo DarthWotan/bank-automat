@@ -21,7 +21,7 @@ public class Profile {
         this.age = age;
         this.konto1 = new Konto();
         this.kontoHashMap.put(konto1.getID(), konto1);
-        this.userID = konto1.getUser_ID();
+        this.userID = konto1.getUserID();
         this.controller = new ProfileController();
         this.saveProfiles = saveProfiles;
 
@@ -31,7 +31,7 @@ public class Profile {
     public Profile(SaveProfiles saveProfiles){
         this.konto1 = new Konto();
         this.kontoHashMap.put(konto1.getID(), konto1);
-        this.userID = konto1.getUser_ID();
+        this.userID = konto1.getUserID();
         this.controller = new ProfileController();
         this.saveProfiles = saveProfiles;
         createProfile();
@@ -64,6 +64,10 @@ public class Profile {
     public void newKonto(){
         Konto konto = new Konto(this.userID);
         kontoHashMap.put(konto.getID(), konto);
+    }
+
+    public Map<Integer, Konto> getKontoHashMap() {
+        return kontoHashMap;
     }
 
     public int getAge() {

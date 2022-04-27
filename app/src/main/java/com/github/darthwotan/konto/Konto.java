@@ -3,21 +3,21 @@ package com.github.darthwotan.konto;
 import java.util.Random;
 
 public class Konto {
-    private int money, ID, user_ID;
+    private int money, ID, userID;
     private String name; // steht fuer den Namen des Nutzerkontos
     private KontoController kontoController = new KontoController();
 
     public Konto(int userID) { // Konstruktor, um neues Konto für bereits vorhandenes Profil zu erstellen
         this.money = 100;
         this.ID = randomNumber();
-        this.user_ID = userID;
+        this.userID = userID;
         this.name = kontoController.createName();
 
     }
     public Konto(){ // Konstruktor, um neues Konto für ein neues Profil zu erstellen
         this.money = 100;
         this.ID = randomNumber();
-        this.user_ID = randomNumber();
+        this.userID = randomNumber();
         name = "Standard";
     }
 
@@ -31,8 +31,8 @@ public class Konto {
         // todo: keine doppelungen
     }
 
-    public int getUser_ID() {
-        return user_ID;
+    public int getUserID() {
+        return userID;
     }
 
     public void setMoney(int money) {

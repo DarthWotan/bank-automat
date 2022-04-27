@@ -14,7 +14,7 @@ public class BankMain {
         Profile test = new Profile(saveProfiles);
         test.showProfile();
 
-        console.startMenu();
+        console.startDemo();
 
 
     }

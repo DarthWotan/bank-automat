@@ -14,19 +14,20 @@ public class Console { // zuständig für die Ausgabe in der Konsole
     }
 
     public void startDemo(){ // soll am Schluss das Programm starten
-
+        startMenu();
+        mainMenu();
     }
 
     public void startMenu(){
-        int i; boolean running = true;
+        int i;
         Scanner input = new Scanner(System.in);
-        while(running){
+        while(true){
             System.out.println("Log In(1) or register(2)");
             checkInt(input);
             i = input.nextInt();
             if(i == 1 || i == 2) {
-                running = false;
                 consoleController.logInOrRegister(i);
+                break;
             }
             else System.out.println("Invalid answer, try again");
         }
