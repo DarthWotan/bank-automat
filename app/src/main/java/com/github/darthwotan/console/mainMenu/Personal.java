@@ -14,7 +14,9 @@ public class Personal {
         this.saveProfiles = saveProfiles;
     }
 
-    public Personal() {}
+    public Personal(SaveProfiles saveProfiles) {
+        this.saveProfiles = saveProfiles;
+    }
 
     public void welcome(){
         Scanner scanner = new Scanner(System.in);
@@ -87,7 +89,7 @@ public class Personal {
             }
             case 4 -> {
                 String newAddress = createAddress();
-                activeUser.getCurrentProfile().setName(newAddress);
+                activeUser.getCurrentProfile().setAddress(newAddress);
                 System.out.println("Your new address: "+activeUser.getCurrentProfile().getAddress());
             }
             case 5 -> {
@@ -118,12 +120,23 @@ public class Personal {
 
     public int createAge(){
         Scanner input = new Scanner(System.in);
+        int output;
         System.out.println("How old are you?");
         while(!input.hasNextInt()) { // solange es kein int ist, wird der naechste string weiterverwendet
             input.next();
             System.out.println("Invalid answer, try again");
         }
-        return input.nextInt();
+
+        while(true){
+            output = input.nextInt();
+            if(output > 0){
+                break;
+            }
+            else {
+                System.out.println("Invalid answer, try again");
+            }
+        }
+        return output;
     }
 
     public String createPassword(){

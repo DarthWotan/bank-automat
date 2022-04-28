@@ -8,11 +8,11 @@ public class BankMain {
     public static void main(String[] args) {
         SaveProfiles saveProfiles = new SaveProfiles();
         Console console = new Console(saveProfiles);
-        Profile testProfile = new Profile("Testname","Test", "Tetstraße 19", 34, "1234", 43224);
+        Profile testProfile = new Profile("Testname","Test", "Tetstraße 19", 34, "1234", 43224); // legt ein Standartprofil an
         testProfile.showProfile();
         saveProfiles.addProfile(testProfile);
 
-        console.startDemo();
+        console.startDemo(); // tatsächlicher Start des Programms
 
 
     }

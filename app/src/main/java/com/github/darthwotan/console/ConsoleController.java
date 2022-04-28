@@ -57,7 +57,7 @@ public class ConsoleController { // zuständig um die richtigen Befehle auszufü
 
     private Profile register(){
         String password, username, name, address;
-        Personal personal = new Personal();
+        Personal personal = new Personal(allProfiles);
         int age, userid;
         while(true){ // falls der User einen freien Namen auswaehlt wird die loop beendet
             username = personal.createUsername();

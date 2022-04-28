@@ -130,7 +130,7 @@ public class BalanceSettings {
                 if(konto1.get().checkIfEnoughMoney(amount)){
                     konto1.get().setMoney(konto1.get().getMoney() - amount);
                     konto2.setMoney(konto2.getMoney() + amount);
-                    System.out.println("Successful");
+                    System.out.println("Successful! You transferred "+amount+"$ to "+profile.getUsername());
                     System.out.println("Current balance: "+konto1.get().getMoney()+"$");
                 }
             }
