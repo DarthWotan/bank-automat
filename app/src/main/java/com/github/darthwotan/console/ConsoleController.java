@@ -78,7 +78,7 @@ public class ConsoleController { // zuständig um die richtigen Befehle auszufü
     public int mainMenu(int input){ // mit return arbeiten, um das ursrprüngliche "Fenster" wieder aufzurufen
         switch (input){
             case 1 -> {
-                BalanceSettings balanceSettings = new BalanceSettings(activeUser);
+                BalanceSettings balanceSettings = new BalanceSettings(activeUser, allProfiles);
                 balanceSettings.welcome();
                 return 1;
             }

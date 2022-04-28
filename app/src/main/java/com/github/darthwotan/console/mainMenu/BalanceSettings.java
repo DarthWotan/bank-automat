@@ -3,14 +3,17 @@ package com.github.darthwotan.console.mainMenu;
 import com.github.darthwotan.profile.ActiveUser;
 import com.github.darthwotan.konto.Konto;
 import com.github.darthwotan.profile.Profile;
+import com.github.darthwotan.profile.SaveProfiles;
 
 import java.util.Map;
 import java.util.Scanner;
 
 public class BalanceSettings {
     ActiveUser activeUser;
-    public BalanceSettings(ActiveUser activeUser) {
+    SaveProfiles saveProfiles;
+    public BalanceSettings(ActiveUser activeUser, SaveProfiles saveProfiles) {
         this.activeUser = activeUser;
+        this.saveProfiles = saveProfiles;
     }
     public void welcome(){
         Scanner scanner = new Scanner(System.in);
@@ -54,7 +57,7 @@ public class BalanceSettings {
             }
             case 3 -> {
                 try {
-                    Konto account1 = askForAccount();
+                    transfer();
 
                 }
                 catch (Exception e) {
@@ -100,7 +103,47 @@ public class BalanceSettings {
         }
     }
 
-    private void transfer(Konto konto, Profile profile2, Konto konto2){
+    private void transfer(){
+        Konto konto1, konto2;
+        Profile profile;
+        String username;
+        int id;
+        int amount;
+        while(true){
+            try {
+                konto1 = askForAccount();
+                break;
+            } catch (Exception e) {
+                System.out.println("Account does not exist");
+            }
+        }
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("To which user do you want to transfer balanceSettings? (username)");
+        username = scanner.next();
+        if(saveProfiles.getProfileMap().containsKey(username)){
+            profile = saveProfiles.getProfileMap().get(username);
+
+            System.out.println("Type in the ID of the account");
+            checkIfInt(scanner);
+            id = scanner.nextInt();
+            if(profile.getKontoHashMap().containsKey(id)) {
+                konto2 = profile.getKontoHashMap().get(id);
+                amount = askForAmount("tansfer");
+                if(konto1.checkIfEnoughMoney(amount)){
+                    konto1.setMoney(konto1.getMoney() - amount);
+                    konto2.setMoney(konto2.getMoney() + amount);
+                    System.out.println("Successful");
+                    System.out.println("Current balance: "+konto1.getMoney()+"$");
+                }
+            }
+            else {
+                System.out.println("Account does not exist");
+            }
+        }
+        else {
+            System.out.println("Profile does not exist");
+        }
+
 
     }
 
@@ -120,9 +163,11 @@ public class BalanceSettings {
             }
             case 3 -> {
                 try {
-                    konto = askForAccount();
-                    int amount = activeUser.getCurrentProfile().getMoney(konto);
-                    System.out.println(konto.getName()+": "+konto.getMoney()+"$");
+
+                    for(Integer key: activeUser.getCurrentProfile().getKontoHashMap().keySet()){
+                        konto = activeUser.getCurrentProfile().getKontoHashMap().get(key);
+                        System.out.println(konto.getName() + ": " + konto.getMoney() + "$");
+                    }
                 } catch (Exception e) {
                     System.out.println("Account does not exist");
                 }
