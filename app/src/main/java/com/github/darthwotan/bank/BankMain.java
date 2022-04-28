@@ -8,11 +8,8 @@ public class BankMain {
     public static void main(String[] args) {
         SaveProfiles saveProfiles = new SaveProfiles();
         Console console = new Console(saveProfiles);
-        Profile testProfile = new Profile("Testname","Test", "Tetstraße 19", 34, "1234", saveProfiles);
+        Profile testProfile = new Profile("Testname","Test", "Tetstraße 19", 34, "1234");
         testProfile.showProfile();
-        if(saveProfiles.checkIfUsernameExists(testProfile.getUsername())) System.out.println("ist da");
-        Profile test = new Profile(saveProfiles);
-        test.showProfile();
 
         console.startDemo();
 

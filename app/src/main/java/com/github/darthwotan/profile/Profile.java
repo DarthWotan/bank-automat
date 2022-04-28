@@ -10,11 +10,10 @@ public class Profile {
     private Konto konto1;
     private int age, userID;
     private ProfileController controller;
-    private Map<Integer,Konto> kontoHashMap =  new HashMap<Integer, Konto>(); // um zu speichern, welche/wie viele Konten der Nutzer hat
+    private Map<Integer,Konto> kontoHashMap = new HashMap<>(); // um zu speichern, welche/wie viele Konten der Nutzer hat
     private UserAccount userAccount;
-    private SaveProfiles saveProfiles;
     
-    public Profile(String name, String username, String address, int age, String password, SaveProfiles saveProfiles) {
+    public Profile(String name, String username, String address, int age, String password) {
         this.name = name;
         this.address = address;
         this.userAccount = new UserAccount(username, password);
@@ -23,39 +22,8 @@ public class Profile {
         this.kontoHashMap.put(konto1.getID(), konto1);
         this.userID = konto1.getUserID();
         this.controller = new ProfileController();
-        this.saveProfiles = saveProfiles;
-
-        this.saveProfiles.addProfile(this);
     }
 
-    public Profile(SaveProfiles saveProfiles){
-        this.konto1 = new Konto();
-        this.kontoHashMap.put(konto1.getID(), konto1);
-        this.userID = konto1.getUserID();
-        this.controller = new ProfileController();
-        this.saveProfiles = saveProfiles;
-        createProfile();
-
-        this.saveProfiles.addProfile(this);
-    } // Konstruktor gleicht einer Registrierung
-
-    private void createProfile(){ // todo: ganze create methoden verlagern
-        boolean running = true;
-        String password, username = null;
-        while(running){ // falls der User einen freien Namen auswaehlt wird die loop beendet
-            username = controller.createUsername();
-            if(!saveProfiles.checkIfUsernameExists(username)) running = false;
-            else System.out.println("Sorry this username is already taken");
-
-        }
-        password = controller.createPassword();
-        this.name = controller.createName();
-        this.address = controller.createAddress();
-        this.age = controller.createAge();
-
-        userAccount = new UserAccount(username, password);
-
-    }
 
     public void showProfile(){
         controller.showProfile(name, userAccount.getUsername(), address, age, userAccount.getPassword(), getNetWorth());

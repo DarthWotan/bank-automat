@@ -6,9 +6,9 @@ import com.github.darthwotan.konto.Konto;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Money {
+public class MoneyUsage {
     ActiveUser activeUser;
-    public Money(ActiveUser activeUser) {
+    public MoneyUsage(ActiveUser activeUser) {
         this.activeUser = activeUser;
     }
     public void welcome(){

@@ -1,17 +1,18 @@
 package com.github.darthwotan.console;
 
+import com.github.darthwotan.console.mainMenu.MoneyUsage;
+import com.github.darthwotan.logIn.LogIn;
 import com.github.darthwotan.profile.ActiveUser;
-import com.github.darthwotan.bank.BankController;
-import com.github.darthwotan.console.mainMenu.Money;
 import com.github.darthwotan.console.mainMenu.Personal;
 import com.github.darthwotan.profile.Profile;
 import com.github.darthwotan.profile.SaveProfiles;
+import com.github.darthwotan.profile.UserAccount;
 
 import java.util.Scanner;
 
 public class ConsoleController { // zuständig um die richtigen Befehle auszuführen
     SaveProfiles allProfiles;
-    BankController bankController;
+    LogIn logIn;
     ActiveUser activeUser;
     public ConsoleController(SaveProfiles saveProfiles){
         allProfiles = saveProfiles;
@@ -19,15 +20,98 @@ public class ConsoleController { // zuständig um die richtigen Befehle auszufü
     }
     
     public void logInOrRegister(int input){
-        if(input == 1) logIn();
-        else activeUser = new ActiveUser(register());
+        if(input == 1) {
+            logIn();
+        }
+        else {
+            activeUser = new ActiveUser(register());
+        }
+    }
+
+    private void logIn() {
+
+        Scanner input = new Scanner(System.in);
+        String username;
+        while(true){
+            System.out.println("What is your username?");
+            username = input.nextLine();
+            if(allProfiles.checkIfUsernameExists(username)) {
+                break;
+            }
+            else System.out.println("Username does not exist, try again");
+        }
+        while(true){
+            logIn = new LogIn(allProfiles.getProfileMap().get(username), askForPassword());
+            if (logIn.checkPass()) { // überprüft, ob das eingeben Passwort korrekt ist
+                activeUser = new ActiveUser(allProfiles.getProfileMap().get(username)); // wählt anschließend den momentanten Nutzer aus
+                break;
+            }
+            else {
+                System.out.println("Wrong password, try again");
+
+            }
+        }
+        System.out.println("Logged in!");
+    }
+
+    private Profile register(){
+        String password, username = null, name, address;
+        int age;
+        while(true){ // falls der User einen freien Namen auswaehlt wird die loop beendet
+            username = createUsername();
+            if(!allProfiles.checkIfUsernameExists(username)) break;
+            else System.out.println("Sorry this username is already taken");
+
+        }
+        password = createPassword();
+        name = createName();
+        address = createAddress();
+        age = createAge();
+
+        Profile profile = new Profile(name, username, address, age, password);
+        allProfiles.addProfile(profile);
+        return profile;
+    }
+
+    public String createName(){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Whats your name?");
+        return input.nextLine();
+    }
+
+    public String createUsername(){
+        Scanner input = new Scanner(System.in);
+        System.out.println("What is your username?");
+        return input.nextLine();
+    }
+
+    public String createAddress(){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Whats your address?");
+        return input.nextLine();
+    }
+
+    public int createAge(){
+        Scanner input = new Scanner(System.in);
+        System.out.println("How old are you?");
+        while(!input.hasNextInt()) { // solange es kein int ist, wird der naechste string weiterverwendet
+            input.next();
+            System.out.println("Invalid answer, try again");
+        }
+        return input.nextInt();
+    }
+
+    public String createPassword(){
+        Scanner input = new Scanner(System.in);
+        System.out.println("What is your password?");
+        return input.nextLine();
     }
 
     public int mainMenu(int input){ // mit return arbeiten, um das ursrprüngliche "Fenster" wieder aufzurufen
         switch (input){
             case 1 -> {
-                Money money = new Money(activeUser);
-                money.welcome();
+                MoneyUsage moneyUsage = new MoneyUsage(activeUser);
+                moneyUsage.welcome();
                 return 1;
             }
             case 2 -> {
@@ -58,27 +142,10 @@ public class ConsoleController { // zuständig um die richtigen Befehle auszufü
         return 5;
     }
 
-    private void logIn() {
+    public String askForPassword(){
         Scanner input = new Scanner(System.in);
-        String username;
-        boolean running = true;
-        while(running){
-            System.out.println("What is your username?");
-            username = input.nextLine();
-            if(allProfiles.checkIfUsernameExists(username)) {
-                running = false;
-                bankController = new BankController(allProfiles.getProfileMap().get(username));
-                bankController.logIn(); // password wird überpürft
-                activeUser = bankController.getActiveUser();
-
-            }
-            else System.out.println("Username does not exist, try again");
-        }
-    }
-
-    private Profile register(){
-        return new Profile(allProfiles);
-
+        System.out.println("What is your password?");
+        return input.nextLine();
     }
 
     private boolean logOut(){
