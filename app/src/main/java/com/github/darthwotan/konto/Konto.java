@@ -7,29 +7,23 @@ public class Konto {
     private String name; // steht fuer den Namen des Nutzerkontos
     private KontoController kontoController = new KontoController();
 
-    public Konto(int userID, int ID) { // Konstruktor, um neues Konto für bereits vorhandenes Profil zu erstellen
+    public Konto(int userID, int ID, boolean first) { // Konstruktor, um neues Konto für bereits vorhandenes Profil zu erstellen
         this.money = 100;
         this.ID = ID;
         this.userID = userID;
-        this.name = kontoController.createName();
+        if(first){
+            this.name = "Standard";
+        }
+        else{
+            this.name = kontoController.createName();
+        }
 
-    }
-    public Konto(int ID){ // Konstruktor, um neues Konto für ein neues Profil zu erstellen
-        this.money = 100;
-        this.ID = ID;
-        this.userID = randomNumber();
-        name = "Standard";
     }
 
     public int getID() {
         return ID;
     }
 
-    public int randomNumber(){
-        Random r = new Random();
-        return r.nextInt(900000) + 100000;
-        // todo: keine doppelungen
-    }
 
     public int getUserID() {
         return userID;

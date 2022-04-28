@@ -58,7 +58,7 @@ public class ConsoleController { // zuständig um die richtigen Befehle auszufü
     private Profile register(){
         String password, username, name, address;
         Personal personal = new Personal();
-        int age;
+        int age, userid;
         while(true){ // falls der User einen freien Namen auswaehlt wird die loop beendet
             username = personal.createUsername();
             if(!allProfiles.checkIfUsernameExists(username)) break;
@@ -69,8 +69,9 @@ public class ConsoleController { // zuständig um die richtigen Befehle auszufü
         name = personal.createName();
         address = personal.createAddress();
         age = personal.createAge();
+        userid = personal.createUserID();
 
-        Profile profile = new Profile(name, username, address, age, password);
+        Profile profile = new Profile(name, username, address, age, password, userid);
         allProfiles.addProfile(profile);
         return profile;
     }
@@ -83,7 +84,8 @@ public class ConsoleController { // zuständig um die richtigen Befehle auszufü
                 return 1;
             }
             case 2 -> {
-                Personal personal = new Personal(activeUser);
+                Personal personal = new Personal(activeUser, allProfiles);
+                personal.welcome();
                 return 2;
             }
             case 3 -> {

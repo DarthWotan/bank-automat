@@ -32,6 +32,15 @@ public class SaveProfiles {
         }
     }
 
+    public boolean checkIfUserIDExists(int userid){
+        for(String key: profileMap.keySet()){
+            if(profileMap.get(key).getUserID() == userid) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public Map<String, Profile> getProfileMap() {
         return profileMap;
     }

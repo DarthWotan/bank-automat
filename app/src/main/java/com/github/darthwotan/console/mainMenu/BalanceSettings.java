@@ -6,6 +6,7 @@ import com.github.darthwotan.profile.Profile;
 import com.github.darthwotan.profile.SaveProfiles;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class BalanceSettings {
@@ -36,35 +37,30 @@ public class BalanceSettings {
     }
 
     private void executeCommand(int input){
-        Konto account;
+        Optional<Konto> account;
         switch (input){
             case 1 -> {
 
-                try {
-                    account = askForAccount();
-                    deposit(account, askForAmount("deposit"));
-                } catch (Exception e) {
+
+                account = askForAccount();
+                if(account.isPresent()) {
+                    deposit(account.get(), askForAmount("deposit"));
+                }
+                else {
                     System.out.println("Account does not exist");
                 }
+
             }
             case 2 -> {
-                try {
-                    account = askForAccount();
-                    draw(account, askForAmount("draw"));
-                } catch (Exception e) {
+                account = askForAccount();
+                if(account.isPresent()) {
+                    draw(account.get(), askForAmount("draw"));
+                }
+                else {
                     System.out.println("Account does not exist");
                 }
             }
-            case 3 -> {
-                try {
-                    transfer();
-
-                }
-                catch (Exception e) {
-                    System.out.println("Account does not exist");
-                }
-
-            }
+            case 3 -> transfer();
             case 4 -> {
                 int i;
                 Scanner scanner = new Scanner(System.in);
@@ -104,21 +100,23 @@ public class BalanceSettings {
     }
 
     private void transfer(){
-        Konto konto1, konto2;
+        Konto konto2;
+        Optional<Konto> konto1;
         Profile profile;
         String username;
         int id;
         int amount;
         while(true){
-            try {
-                konto1 = askForAccount();
+            konto1 = askForAccount();
+             if(konto1.isPresent()){
                 break;
-            } catch (Exception e) {
+            }
+            else {
                 System.out.println("Account does not exist");
             }
         }
         Scanner scanner = new Scanner(System.in);
-        System.out.println("To which user do you want to transfer balanceSettings? (username)");
+        System.out.println("To which user do you want to transfer money? (username)");
         username = scanner.next();
         if(saveProfiles.getProfileMap().containsKey(username)){
             profile = saveProfiles.getProfileMap().get(username);
@@ -129,11 +127,11 @@ public class BalanceSettings {
             if(profile.getKontoHashMap().containsKey(id)) {
                 konto2 = profile.getKontoHashMap().get(id);
                 amount = askForAmount("tansfer");
-                if(konto1.checkIfEnoughMoney(amount)){
-                    konto1.setMoney(konto1.getMoney() - amount);
+                if(konto1.get().checkIfEnoughMoney(amount)){
+                    konto1.get().setMoney(konto1.get().getMoney() - amount);
                     konto2.setMoney(konto2.getMoney() + amount);
                     System.out.println("Successful");
-                    System.out.println("Current balance: "+konto1.getMoney()+"$");
+                    System.out.println("Current balance: "+konto1.get().getMoney()+"$");
                 }
             }
             else {
@@ -148,34 +146,30 @@ public class BalanceSettings {
     }
 
     private void accountSettings(int i){
-        Konto konto;
+        Optional<Konto> konto;
+        Konto account;
         switch (i){
-            case 1 -> {
-                activeUser.getCurrentProfile().newKonto();
-            }
+            case 1 -> activeUser.getCurrentProfile().newKonto();
             case 2 -> {
-                try {
                     konto = askForAccount();
-                    activeUser.getCurrentProfile().deleteKonto(konto);
-                } catch (Exception e) {
-                    System.out.println("Account does not exist");
-                }
+                    if(konto.isPresent()){
+                        activeUser.getCurrentProfile().deleteKonto(konto.get());
+                    }
+                    else {
+                        System.out.println("Account does not exist");
+                    }
+
             }
             case 3 -> {
-                try {
-
-                    for(Integer key: activeUser.getCurrentProfile().getKontoHashMap().keySet()){
-                        konto = activeUser.getCurrentProfile().getKontoHashMap().get(key);
-                        System.out.println(konto.getName() + ": " + konto.getMoney() + "$");
-                    }
-                } catch (Exception e) {
-                    System.out.println("Account does not exist");
+                for(Integer key: activeUser.getCurrentProfile().getKontoHashMap().keySet()){
+                    account = activeUser.getCurrentProfile().getKontoHashMap().get(key);
+                    System.out.println(account.getName() + ": " + account.getMoney() + "$");
                 }
             }
         }
     }
 
-    private Konto askForAccount() throws Exception { // todo: besser mit optional statt Exeption
+    private Optional<Konto> askForAccount() { // bessere Option gegenüber einer Exception (immer mit try und catch) oder return null (Error)
         int a;
         Map<Integer, Konto> map = activeUser.getCurrentProfile().getKontoHashMap();
 
@@ -185,8 +179,8 @@ public class BalanceSettings {
             System.out.println(map.get(i).getName() + "("+i+")");
         checkIfInt(scanner);
         a = scanner.nextInt();
-        if(map.containsKey(a)) return map.get(a);
-        else throw new Exception("Account does not exist");
+        if(map.containsKey(a)) return Optional.of(map.get(a));
+        else return Optional.empty();
     }
 
     private int askForAmount(String text){
@@ -202,4 +196,6 @@ public class BalanceSettings {
             scanner.next();
         }
     }
+
+
 }
