@@ -1,12 +1,11 @@
 package com.github.darthwotan.console;
 
 import com.github.darthwotan.console.mainMenu.MoneyUsage;
+import com.github.darthwotan.console.mainMenu.Personal;
 import com.github.darthwotan.logIn.LogIn;
 import com.github.darthwotan.profile.ActiveUser;
-import com.github.darthwotan.console.mainMenu.Personal;
 import com.github.darthwotan.profile.Profile;
 import com.github.darthwotan.profile.SaveProfiles;
-import com.github.darthwotan.profile.UserAccount;
 
 import java.util.Scanner;
 
@@ -24,7 +23,9 @@ public class ConsoleController { // zuständig um die richtigen Befehle auszufü
             logIn();
         }
         else {
-            activeUser = new ActiveUser(register());
+            Profile profile = register();
+            activeUser = new ActiveUser(profile);
+            allProfiles.addProfile(profile);
         }
     }
 
@@ -55,56 +56,23 @@ public class ConsoleController { // zuständig um die richtigen Befehle auszufü
     }
 
     private Profile register(){
-        String password, username = null, name, address;
+        String password, username, name, address;
+        Personal personal = new Personal();
         int age;
         while(true){ // falls der User einen freien Namen auswaehlt wird die loop beendet
-            username = createUsername();
+            username = personal.createUsername();
             if(!allProfiles.checkIfUsernameExists(username)) break;
             else System.out.println("Sorry this username is already taken");
 
         }
-        password = createPassword();
-        name = createName();
-        address = createAddress();
-        age = createAge();
+        password = personal.createPassword();
+        name = personal.createName();
+        address = personal.createAddress();
+        age = personal.createAge();
 
         Profile profile = new Profile(name, username, address, age, password);
         allProfiles.addProfile(profile);
         return profile;
-    }
-
-    public String createName(){
-        Scanner input = new Scanner(System.in);
-        System.out.println("Whats your name?");
-        return input.nextLine();
-    }
-
-    public String createUsername(){
-        Scanner input = new Scanner(System.in);
-        System.out.println("What is your username?");
-        return input.nextLine();
-    }
-
-    public String createAddress(){
-        Scanner input = new Scanner(System.in);
-        System.out.println("Whats your address?");
-        return input.nextLine();
-    }
-
-    public int createAge(){
-        Scanner input = new Scanner(System.in);
-        System.out.println("How old are you?");
-        while(!input.hasNextInt()) { // solange es kein int ist, wird der naechste string weiterverwendet
-            input.next();
-            System.out.println("Invalid answer, try again");
-        }
-        return input.nextInt();
-    }
-
-    public String createPassword(){
-        Scanner input = new Scanner(System.in);
-        System.out.println("What is your password?");
-        return input.nextLine();
     }
 
     public int mainMenu(int input){ // mit return arbeiten, um das ursrprüngliche "Fenster" wieder aufzurufen

@@ -10,6 +10,7 @@ public class BankMain {
         Console console = new Console(saveProfiles);
         Profile testProfile = new Profile("Testname","Test", "Tetstraße 19", 34, "1234");
         testProfile.showProfile();
+        saveProfiles.addProfile(testProfile);
 
         console.startDemo();
 
