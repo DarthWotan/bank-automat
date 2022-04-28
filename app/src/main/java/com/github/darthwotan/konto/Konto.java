@@ -7,16 +7,16 @@ public class Konto {
     private String name; // steht fuer den Namen des Nutzerkontos
     private KontoController kontoController = new KontoController();
 
-    public Konto(int userID) { // Konstruktor, um neues Konto für bereits vorhandenes Profil zu erstellen
+    public Konto(int userID, int ID) { // Konstruktor, um neues Konto für bereits vorhandenes Profil zu erstellen
         this.money = 100;
-        this.ID = randomNumber();
+        this.ID = ID;
         this.userID = userID;
         this.name = kontoController.createName();
 
     }
-    public Konto(){ // Konstruktor, um neues Konto für ein neues Profil zu erstellen
+    public Konto(int ID){ // Konstruktor, um neues Konto für ein neues Profil zu erstellen
         this.money = 100;
-        this.ID = randomNumber();
+        this.ID = ID;
         this.userID = randomNumber();
         name = "Standard";
     }
@@ -49,5 +49,9 @@ public class Konto {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean checkIfEnoughMoney(int amount){
+        return money - amount >= 0;
     }
 }

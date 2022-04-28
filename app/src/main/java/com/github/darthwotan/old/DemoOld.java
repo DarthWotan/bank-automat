@@ -39,7 +39,7 @@ public class DemoOld {
         System.out.println("""
                 
                                            What would you like to do?
-                Draw (1)     Deposit(2)    Transfer moneyUsage(3)    Personal data(4)    Log out(5)
+                Draw (1)     Deposit(2)    Transfer balanceSettings(3)    Personal data(4)    Log out(5)
                                     (Press one of the numbers to continue)""");
 
         Scanner input = new Scanner(System.in);
@@ -91,7 +91,7 @@ public class DemoOld {
         System.out.println("""
                 
                        What would you like to do?
-                         Draw moneyUsage(1)     Go back(2)\040
+                         Draw balanceSettings(1)     Go back(2)\040
                      (Press one of the numbers to continue)""");
         while_loop(1);
 
@@ -104,7 +104,7 @@ public class DemoOld {
         System.out.println("""
                 
                             What would you like to do?
-                         Deposit moneyUsage (1)     Go back(2)\040
+                         Deposit balanceSettings (1)     Go back(2)\040
                      (Press one of the numbers to continue)""");
         while_loop(2);
     }
@@ -113,7 +113,7 @@ public class DemoOld {
         System.out.println("""
                 
                        What would you like to do?
-                         Transfer moneyUsage (1)     Go back(2)\040
+                         Transfer balanceSettings (1)     Go back(2)\040
                      (Press one of the numbers to continue)""");
         while_loop(3);
 
@@ -139,7 +139,7 @@ public class DemoOld {
                                 check_int(input);
                                 int sum = input.nextInt();
                                 if (!port.current_profileOld.getAccount().draw(sum))
-                                    System.out.println("You don't have enough moneyUsage to do this!");
+                                    System.out.println("You don't have enough balanceSettings to do this!");
                                 else {
                                     System.out.println("Successful! You withdrew " + sum + "$");
                                     System.out.println("Your current balance: " + port.current_profileOld.getMoney() + "$");
@@ -162,7 +162,7 @@ public class DemoOld {
                         }
                         case 3 -> {
                             Transfer transfer;
-                            System.out.println("To which user do you want to transfer moneyUsage? (ID)");
+                            System.out.println("To which user do you want to transfer balanceSettings? (ID)");
                             check_int(input);
                             int id = 0;
 
@@ -178,7 +178,7 @@ public class DemoOld {
                             second_user = port.set_accountOld.dataOld.search_profil(id);
 
                             while(true){
-                                System.out.println("How much moneyUsage do you want do send?");
+                                System.out.println("How much balanceSettings do you want do send?");
                                 check_int(input);
                                 int sum = input.nextInt();
 

@@ -40,7 +40,7 @@ public class Console { // zuständig für die Ausgabe in der Konsole
             System.out.println("""
                                     
                                    What would you like to do?
-                    Money(1)    Personal(2)    Delete Account(3)    Log out(4)
+                    Balance(1)    Personal(2)    Delete Account(3)    Log out(4)
                             (Press one of the numbers to continue)""");
             checkInt(input);
             i = input.nextInt();

@@ -18,7 +18,7 @@ public class Profile {
         this.address = address;
         this.userAccount = new UserAccount(username, password);
         this.age = age;
-        this.konto1 = new Konto();
+        this.konto1 = new Konto(createID());
         this.kontoHashMap.put(konto1.getID(), konto1);
         this.userID = konto1.getUserID();
         this.controller = new ProfileController();
@@ -30,8 +30,16 @@ public class Profile {
     } // gibt Name, Addresse, Alter, Passwort und Nutzernamen aus
 
     public void newKonto(){
-        Konto konto = new Konto(this.userID);
+        Konto konto = new Konto(this.userID, createID());
         kontoHashMap.put(konto.getID(), konto);
+    }
+
+    public void deleteKonto(Konto konto){
+        kontoHashMap.remove(konto.getID(), konto);
+    }
+
+    private int createID(){
+        return kontoHashMap.size() + 1;
     }
 
     public Map<Integer, Konto> getKontoHashMap() {

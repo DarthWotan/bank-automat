@@ -1,6 +1,6 @@
 package com.github.darthwotan.console;
 
-import com.github.darthwotan.console.mainMenu.MoneyUsage;
+import com.github.darthwotan.console.mainMenu.BalanceSettings;
 import com.github.darthwotan.console.mainMenu.Personal;
 import com.github.darthwotan.logIn.LogIn;
 import com.github.darthwotan.profile.ActiveUser;
@@ -13,6 +13,7 @@ public class ConsoleController { // zuständig um die richtigen Befehle auszufü
     SaveProfiles allProfiles;
     LogIn logIn;
     ActiveUser activeUser;
+
     public ConsoleController(SaveProfiles saveProfiles){
         allProfiles = saveProfiles;
         
@@ -30,7 +31,6 @@ public class ConsoleController { // zuständig um die richtigen Befehle auszufü
     }
 
     private void logIn() {
-
         Scanner input = new Scanner(System.in);
         String username;
         while(true){
@@ -78,8 +78,8 @@ public class ConsoleController { // zuständig um die richtigen Befehle auszufü
     public int mainMenu(int input){ // mit return arbeiten, um das ursrprüngliche "Fenster" wieder aufzurufen
         switch (input){
             case 1 -> {
-                MoneyUsage moneyUsage = new MoneyUsage(activeUser);
-                moneyUsage.welcome();
+                BalanceSettings balanceSettings = new BalanceSettings(activeUser);
+                balanceSettings.welcome();
                 return 1;
             }
             case 2 -> {
