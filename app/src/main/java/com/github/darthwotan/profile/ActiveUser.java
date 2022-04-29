@@ -12,6 +12,10 @@ public class ActiveUser {
         return currentProfile;
     }
 
+    public String getUsername() {
+        return currentProfile.getUsername();
+    }
+
     public void setCurrentProfile(Profile currentProfile) {
         this.currentProfile = currentProfile;
     }

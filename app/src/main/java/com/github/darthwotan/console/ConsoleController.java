@@ -90,20 +90,19 @@ public class ConsoleController { // zuständig um die richtigen Befehle auszufü
             }
             case 3 -> {
                 Scanner scanner = new Scanner(System.in);
-                String i; boolean running = true;
-                while(running){
+                String i;
+                while(true){
                     System.out.println("Are you sure? (y/n)");
                     i = scanner.next();
                     if(i.equals("y")) {
-                        running = false;
                         deleteAccount(activeUser.getCurrentProfile());
+                        return 3;
                     }
                     if(i.equals("n")) { // return
                         break;
                     }
                     else System.out.println("Invalid answer, try again");
                 }
-                return 3;
             }
             case 4 -> {
                 if(logOut()) return 4;

@@ -68,6 +68,7 @@ public class Personal {
         switch (number){
             case 1 -> {
                 String newName = createName();
+                saveProfiles.getProfileMap().get(activeUser.getUsername()).setName(newName);
                 activeUser.getCurrentProfile().setName(newName);
                 System.out.println("Your new name: " + activeUser.getCurrentProfile().getName());
 
@@ -75,6 +76,7 @@ public class Personal {
             case 2 -> {
                 String newUsername = createUsername();
                 if(!saveProfiles.checkIfUsernameExists(newUsername)){
+                    saveProfiles.getProfileMap().get(activeUser.getUsername()).setUsername(newUsername);
                     activeUser.getCurrentProfile().setUsername(newUsername);
                     System.out.println("Your new username: " + activeUser.getCurrentProfile().getUsername());
                 }
@@ -84,16 +86,19 @@ public class Personal {
             }
             case 3 -> {
                 String newPassword = createPassword();
+                saveProfiles.getProfileMap().get(activeUser.getUsername()).setPassword(newPassword);
                 activeUser.getCurrentProfile().setPassword(newPassword);
                 System.out.println("Your new password: "+activeUser.getCurrentProfile().getPassword());
             }
             case 4 -> {
                 String newAddress = createAddress();
+                saveProfiles.getProfileMap().get(activeUser.getUsername()).setAddress(newAddress);
                 activeUser.getCurrentProfile().setAddress(newAddress);
                 System.out.println("Your new address: "+activeUser.getCurrentProfile().getAddress());
             }
             case 5 -> {
                 int newAge = createAge();
+                saveProfiles.getProfileMap().get(activeUser.getUsername()).setAge(newAge);
                 activeUser.getCurrentProfile().setAge(newAge);
                 System.out.println("Your new age: "+activeUser.getCurrentProfile().getAge());
             }
